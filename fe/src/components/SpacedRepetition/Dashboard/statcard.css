@@ -1,0 +1,22 @@
+.statcard{ display:flex; align-items:center; gap:12px; }
+.statcard-icon{ padding:8px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; }
+.statcard-icon-svg{ width:16px; height:16px; }
+.statcard-body{ display:flex; flex-direction:column; }
+.statcard-label{ font-size:12px; color:#6b7280; margin:0; }
+.statcard-value{ font-size:18px; font-weight:700; margin:0; }
+
+/* background variants */
+.stat-bg-gray{ background:#f3f4f6; }
+.stat-bg-red{ background:#fee2e2; }
+.stat-bg-yellow{ background:#fef3c7; }
+
+/* text color variants */
+.stat-text-dark{ color:#111827; }
+.stat-text-red{ color:#dc2626; }
+.stat-text-yellow{ color:#b45309; }
+.statcard-bg-gray .statcard-icon { background:#f3f4f6; }
+.statcard-bg-red .statcard-icon { background:#fee2e2; }
+.statcard-bg-yellow .statcard-icon { background:#fffbeb; }
+.statcard-text-dark { color: #111827; }
+.statcard-text-red { color: #dc2626; }
+.statcard-text-yellow { color: #b45309; }

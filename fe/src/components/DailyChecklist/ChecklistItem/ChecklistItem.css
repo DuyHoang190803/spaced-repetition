@@ -1,0 +1,31 @@
+.checklist-row{ display:flex; align-items:center; }
+
+.checklist-habit{ padding:12px 16px; font-size:14px; font-weight:600; color:#111827; width:256px; display:flex; align-items:center; justify-content:space-between; border-top-left-radius:8px; border-bottom-left-radius:8px; }
+
+.checklist-habit-input{ background:#fff; padding:6px 8px; font-size:14px; border:1px solid #d1d5db; border-radius:6px; }
+
+.checklist-habit-actions{ display:flex; gap:6px; opacity:0; transition:opacity 150ms ease; }
+.checklist-row.group:hover .checklist-habit-actions, .checklist-row.group:focus-within .checklist-habit-actions{ opacity:1; }
+
+.checklist-action-btn{ padding:6px; border-radius:6px; background:transparent; border:none; cursor:pointer; }
+.checklist-action-btn.delete{ color:#dc2626; }
+.checklist-action-icon{ width:14px; height:14px; }
+
+.checklist-days{ display:flex; gap:8px; flex:1; border-left:1px solid #e5e7eb; padding-left:12px; }
+
+.checklist-day-cell{ width:32px; height:40px; border:1px solid #e5e7eb; background:#ffffff; display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:3px; }
+.checklist-day-cell:hover{ background:#f9fafb; }
+.checklist-day-cell.checked{ background:#000; color:#fff; }
+.checkmark{ color:#fff; font-size:16px; }
+
+/* color variants for habits (up to 10 variants mirrored from CHECKLIST_COLORS) */
+.checklist-habit-0{ background:#f3f4f6 }
+.checklist-habit-1{ background:#e5e7eb }
+.checklist-habit-2{ background:#f8fafc }
+.checklist-habit-3{ background:#f3f4f6 }
+.checklist-habit-4{ background:#e5e7eb }
+.checklist-habit-5{ background:#f8fafc }
+.checklist-habit-6{ background:#f3f4f6 }
+.checklist-habit-7{ background:#e5e7eb }
+.checklist-habit-8{ background:#f8fafc }
+.checklist-habit-9{ background:#f3f4f6 }

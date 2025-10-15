@@ -1,0 +1,23 @@
+.todoform {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.todoform-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.todoform-label {
+  font-size: 13px;
+  color: #374151;
+}
+.todoform-input, .input-title, .input-time {
+  border: 1px solid #e6edf3;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.todoform .card-actions {
+  display: flex;
+  gap: 8px;
+}

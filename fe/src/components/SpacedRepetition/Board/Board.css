@@ -1,0 +1,20 @@
+.board-outer {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-right: 20px;
+}
+
+.board-inner {
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    min-width: 100%;
+    align-items: flex-start;
+}
+
+/* ensure inner content can expand horizontally */
+.board-inner>* {
+    flex-shrink: 0;
+}

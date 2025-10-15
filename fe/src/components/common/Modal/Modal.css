@@ -1,0 +1,23 @@
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+}
+
+.modal-card{
+  background:#ffffff;
+  border-radius:12px;
+  padding:24px;
+  width:24rem; /* 384px ~ w-96 */
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.modal-title{
+  font-size:1.125rem;
+  font-weight:600;
+  margin-bottom:1rem;
+}

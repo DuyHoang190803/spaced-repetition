@@ -1,0 +1,6 @@
+.card-footer{ display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid #f3f4f6; }
+.card-footer-left{ color:#6b7280; font-size:12px; }
+.card-footer-actions{ display:flex; gap:8px; }
+.card-footer-btn{ padding:6px; border-radius:6px; background:transparent; border:none; cursor:pointer; }
+.card-footer-btn.delete{ color:#dc2626; }
+.card-footer-icon{ width:16px; height:16px; }

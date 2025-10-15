@@ -1,0 +1,14 @@
+.checklist-stats {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.checklist-stat {
+  font-size: 14px;
+  color: #475569;
+}
+.checklist-stat-value {
+  font-weight: 700;
+  color: #0f172a;
+  margin-left: 6px;
+}

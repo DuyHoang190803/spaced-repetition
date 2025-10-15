@@ -1,0 +1,118 @@
+.checklist-page {
+    height: 100vh;
+    background: #ffffff;
+    padding: 32px;
+    overflow: auto;
+}
+
+.checklist-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.checklist-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.checklist-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.checklist-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.checklist-nav {
+    padding: 8px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.checklist-nav:hover {
+    background: #f3f4f6;
+}
+
+.checklist-month {
+    font-size: 18px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.checklist-sub {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.checklist-board {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    border: 1px solid #e5e7eb;
+    overflow-x: auto;
+}
+
+.checklist-board-inner {
+    padding: 24px;
+}
+
+.checklist-board-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.checklist-habits-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checklist-add {
+    font-size: 12px;
+    padding: 6px 10px;
+    background: #000;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.checklist-add:hover {
+    background: #111827;
+}
+
+.checklist-days {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.checklist-day {
+    width: 32px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.checklist-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checklist-note {
+    text-align: center;
+    margin-top: 16px;
+    color: #6b7280;
+}

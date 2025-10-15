@@ -1,0 +1,56 @@
+.sidebar-header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1f2937;
+    /* gray-800 */
+    position: relative;
+}
+
+.sidebar-title {
+    font-size: 1.125rem;
+    /* 18px */
+    font-weight: 700;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.sidebar-toggle:hover {
+    background: #111827;
+    /* gray-800 */
+}
+
+.sidebar-toggle-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* When sidebar is open, keep toggle at the right edge */
+.sidebar-header.open .sidebar-toggle {
+    right: 0.5rem;
+    height: 50px;
+}
+
+/* When sidebar is collapsed, center the toggle horizontally */
+.sidebar-header.collapsed {
+    justify-content: center;
+    height: 50px;
+}
+.sidebar-header.collapsed .sidebar-toggle {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+}

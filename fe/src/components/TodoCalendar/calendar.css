@@ -1,0 +1,33 @@
+/* Calendar and DayCell styles (basic starter styles to match screenshots) */
+.calendar-page {
+  padding: 16px;
+}
+.calendar-hero { margin-bottom: 16px; }
+.calendar-hero-title { font-size: 20px; font-weight:700; margin:0 }
+.calendar-hero-sub { color: #6b7280; margin-top:6px }
+
+.calendar-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px }
+.calendar-header-left { display:flex; align-items:center; gap:8px }
+.calendar-nav { background:transparent; border:1px solid #e6edf3; padding:6px; border-radius:6px; cursor:pointer }
+.calendar-nav-icon { width:16px; height:16px }
+.calendar-title { font-weight:600 }
+
+.calendar-body { background:#fff; border:1px solid #e6edf3; padding:12px; border-radius:10px }
+.calendar-weekdays { display:flex; gap:8px; margin-bottom:8px }
+.calendar-weekday { flex:1; text-align:center; font-size:12px; color:#6b7280 }
+.calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px }
+.calendar-empty { background:transparent; height:80px }
+
+.daycell { background:#fff; border:1px solid #eef2f6; border-radius:8px; padding:8px; min-height:80px; cursor:pointer }
+.daycell-today { box-shadow: 0 0 0 2px rgba(37,99,235,0.1); }
+.daycell-number { font-size:12px; color:#374151; font-weight:600 }
+.daycell-number-today { color:#2563eb }
+.daycell-tasks { margin-top:8px; display:flex; flex-direction:column; gap:6px }
+.daycell-task { display:flex; align-items:center; gap:8px; background:#fbfdff; padding:6px; border-radius:6px }
+.daycell-checkbox { width:16px; height:16px }
+.daycell-task-body { flex:1 }
+.daycell-task-title { margin:0; font-size:13px; color:#0f172a }
+.daycell-task-title.done { text-decoration: line-through; color:#9ca3af }
+.daycell-task-meta { display:flex; gap:8px; align-items:center; margin-top:4px }
+.daycell-task-time { font-size:12px; color:#6b7280 }
+.daycell-delete { background:transparent; border:none; color:#ef4444; cursor:pointer }

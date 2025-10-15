@@ -1,0 +1,260 @@
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* margin-bottom: 8px; */
+}
+
+
+.card-next-strong {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.card-next-time {
+  font-weight: 500;
+  color: #374151;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  cursor: grab;
+  /* use hand (open) */
+  transition: box-shadow 120ms ease, transform 120ms ease;
+}
+
+/* show grabbing cursor when native dragging is enabled */
+.card[draggable="true"] {
+  cursor: grabbing;
+}
+
+/* Overdue card visual - red border and subtle tint */
+.card.overdue {
+  border-color: #ef4444;
+  /* red-500 */
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.06);
+}
+
+.card:hover {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+/* Title toggle styles */
+.card-title-toggle {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: inherit;
+}
+
+.card-title-text {
+  flex: 1;
+}
+
+.card-next-inline{
+  font-size:12px;
+  color:#6b7280;
+  font-weight:600;
+  margin-left:12px;
+  white-space:nowrap;
+}
+
+.card-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: transform 150ms ease;
+}
+
+.card-chevron.open {
+  transform: rotate(180deg);
+  color: #374151;
+}
+
+.card-body {
+  font-size: 12px;
+  color: #4b5563;
+  margin: 0 0 12px 0;
+}
+
+
+.card-meta {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-meta {
+  align-items: flex-start;
+}
+
+.card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.card-review {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+  text-align: left;
+}
+
+.card-next {
+  background: transparent;
+  border-radius: 8px;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.card-next-text {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 600;
+  margin: 0;
+  text-align: left;
+}
+
+/* Collapsed state: hide body and meta visually when not expanded */
+.card.collapsed .card-body,
+.card.collapsed .card-meta,
+.card.collapsed .card-created {
+  display: none;
+}
+
+.card.expanded .card-body,
+.card.expanded .card-meta {
+  display: block;
+}
+
+/* Ensure the overdue border is visible even when collapsed */
+/* (collapsed padding handled by .card default) */
+
+/* Popover anchored to card (like Google Calendar event popover) */
+.card-popover {
+  position: fixed;
+  /* position calculated inline via style prop */
+  background: #ffffff; /* white background */
+  color: #0f1721; /* primary text color: near-black */
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08); /* subtle darker shadow on white */
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  z-index: 60;
+  padding: 12px 16px;
+}
+
+.card-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.card-popover-badge-and-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-popover-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #0f1721;
+}
+
+.card-popover-close {
+  background: transparent;
+  border: none;
+  color: #6b7280; /* muted close icon color */
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.card-popover-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-popover-btn {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #0f1721;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card-popover-btn.delete {
+  border-color: rgba(239, 68, 68, 0.12);
+  color: #b91c1c; /* red-700 for delete emphasis */
+}
+
+.card-popover-btn:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.card-popover-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-popover-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: #0f1721;
+}
+
+.card-popover-label {
+  min-width: 120px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.card-popover-value {
+  color: #0f1721;
+}
+
+.card-popover-icon {
+  width: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-popover-meta {
+  font-size: 14px;
+}
+
+.card-popover-content {
+  color: #0f1721;
+  /* margin: 6px 0 0 0; */
+}
