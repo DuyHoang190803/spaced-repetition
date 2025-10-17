@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Sidebar, MainLayout } from './components/Layout';
 import { SpacedRepetitionPage, TodoCalendarPage, DailyChecklistPage } from './pages';
 import { useNotes, useTodos, useChecklist } from './hooks';
-import './app.css';
+import './App.css';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('spaced-repetition');
