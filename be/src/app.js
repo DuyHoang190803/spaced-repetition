@@ -1,9 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import notesRouter from './routes/note.route.js';
+import requestLogger from './middleware/requestLogger.js';
 
 export default function createApp() {
   const app = express();
+
+  // Request logging middleware (single reusable module)
+  app.use(requestLogger);
 
   // CORS whitelist: provide CORS_ALLOWED_ORIGINS as a comma-separated list in .env
   const raw = process.env.CORS_ALLOWED_ORIGINS || '';

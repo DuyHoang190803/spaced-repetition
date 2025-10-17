@@ -1,31 +1,18 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { Types } from 'mongoose';
 import { columns } from '../models/notes.model.js';
+import Note from '../models/notes.model.js';
+import { connectToDatabase } from '../database/connect.mongodb.js';
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const dbName = process.env.MONGODB_DB || 'spaced_repetition_db';
-
-let client;
-async function getDb() {
-  if (!client) {
-    client = new MongoClient(uri);
-    await client.connect();
-    // ensure indexes on first connect
-    try {
-      const db = client.db(dbName);
-      const coll = db.collection('notes');
-      // create indexes: currentPosition, nextReviewTime, createdAt, and text index on title+content
-      await coll.createIndexes([
-        { key: { currentPosition: 1 }, name: 'idx_currentPosition' },
-        { key: { nextReviewTime: 1 }, name: 'idx_nextReviewTime' },
-        { key: { createdAt: -1 }, name: 'idx_createdAt' },
-        { key: { title: 'text', content: 'text' }, name: 'idx_text_title_content' }
-      ]);
-    } catch (err) {
-      // Index creation failure should not prevent app from starting; log and continue
-      console.error('Failed to create indexes for notes collection:', err.message || err);
-    }
+let indexesEnsured = false;
+async function ensureIndexes() {
+  if (indexesEnsured) return;
+  await connectToDatabase();
+  try {
+    await Note.syncIndexes();
+  } catch (err) {
+    console.error('Failed to sync indexes for Note model:', err.message || err);
   }
-  return client.db(dbName);
+  indexesEnsured = true;
 }
 
 // Spaced Repetition Intervals - Based on Scientific Research
@@ -52,29 +39,28 @@ const intervalMap = {
 };
 
 async function listNotes() {
-  const db = await getDb();
-  return db.collection('notes').find({}).sort({ createdAt: -1 }).toArray();
+  await ensureIndexes();
+  return Note.find({}).sort({ createdAt: -1 }).lean();
 }
 
 async function createNote({ title, content }) {
-  const db = await getDb();
+  await ensureIndexes();
   const now = new Date();
   const note = {
     title,
     content,
     currentPosition: '0m',
     reviewCount: 0,
-    nextReviewTime: new Date(now.getTime() + 20 * 60 * 1000).toISOString(),
-    createdAt: now.toISOString()
+    nextReviewTime: new Date(now.getTime() + 20 * 60 * 1000),
+    createdAt: now
   };
-  const res = await db.collection('notes').insertOne(note);
-  return { _id: res.insertedId, ...note };
+  const created = await Note.create(note);
+  return created.toObject();
 }
 
 async function moveNote({ id, targetPosition }) {
-  const db = await getDb();
-  const collection = db.collection('notes');
-  const note = await collection.findOne({ _id: new ObjectId(id) });
+  await ensureIndexes();
+  const note = await Note.findById(id).lean();
   if (!note) throw new Error('Note not found');
 
   const currentIndex = columns.indexOf(note.currentPosition);
@@ -90,14 +76,13 @@ async function moveNote({ id, targetPosition }) {
   const incrementMinutes = intervalMap[targetPosition];
   const nextReview = incrementMinutes ? new Date(now.getTime() + incrementMinutes * 60 * 1000).toISOString() : null;
 
-  await collection.updateOne({ _id: note._id }, { $set: { currentPosition: targetPosition, reviewCount, nextReviewTime: nextReview } });
-  return collection.findOne({ _id: note._id });
+  const updated = await Note.findByIdAndUpdate(note._id, { $set: { currentPosition: targetPosition, reviewCount, nextReviewTime: nextReview } }, { new: true }).lean();
+  return updated;
 }
 
 async function updateNote(id, updates) {
-  const db = await getDb();
-  const collection = db.collection('notes');
-  const doc = await collection.findOne({ _id: new ObjectId(id) });
+  await ensureIndexes();
+  const doc = await Note.findById(id).lean();
   if (!doc) return null;
   // Only set allowed fields
   const allowed = ['title', 'content', 'currentPosition', 'reviewCount', 'nextReviewTime'];
@@ -132,22 +117,23 @@ async function updateNote(id, updates) {
     }
   }
 
-  if (Object.keys(setObj).length === 0) return collection.findOne({ _id: doc._id });
-  await collection.updateOne({ _id: doc._id }, { $set: setObj });
-  return collection.findOne({ _id: doc._id });
+  if (Object.keys(setObj).length === 0) return doc;
+  const updated = await Note.findByIdAndUpdate(doc._id, { $set: setObj }, { new: true }).lean();
+  return updated;
 }
 
 export { listNotes, createNote, moveNote };
 // additional helpers
+
 async function getNoteById(id) {
-  const db = await getDb();
-  const doc = await db.collection('notes').findOne({ _id: new ObjectId(id) });
+  await ensureIndexes();
+  const doc = await Note.findById(id).lean();
   return doc || null;
 }
 
 async function deleteNote(id) {
-  const db = await getDb();
-  const res = await db.collection('notes').deleteOne({ _id: new ObjectId(id) });
+  await ensureIndexes();
+  const res = await Note.deleteOne({ _id: id });
   return res.deletedCount === 1;
 }
 
