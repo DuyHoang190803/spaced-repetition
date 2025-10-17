@@ -28,6 +28,11 @@ export default function createApp() {
 
   app.use(express.json());
 
+  // Default API root
+  app.get('/api', (req, res) => {
+    res.json({ message: 'hello world' });
+  });
+
   app.use('/api/notes', notesRouter);
 
   // health
